@@ -1,14 +1,14 @@
 # Improved Nano Syntax Highlighting Files
 
-This repository holds ``{lang}.nanorc`` files that have improved definitions of syntax highlighting for various languages.
+This repository holds `{lang}.nanorc` files that have improved definitions of syntax highlighting for various languages.
 
-For readability will use `$install_path` for the path of your choose (in *system wide* the path is always `/usr/share/nano-syntax-highlighting/`).
+For readability will use `$install_path` for the path of your choose (in _system wide_ the path is always `/usr/share/nano-syntax-highlighting/`).
 
-# Installation
+## Installation
 
 There are three ways to install this repo.
 
-## 1. Automatic installer
+### 1. Automatic installer
 
 Copy the following code to download and run the installer script:
 
@@ -22,22 +22,23 @@ If your machine doesn't have `curl` command, use this code:
 wget https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh -O- | sh
 ```
 
-### Note:
+#### Note:
 
 Some syntax definitions which exist in Nano upstream may be preferable to the ones provided by this package.  
-The ` install.sh` script may be run with `-l` or `--lite` to insert the included syntax definitions from this package with *lower* precedence than the ones provided by the standard package.
+The `install.sh` script may be run with `-l` or `--lite` to insert the included syntax definitions from this package with _lower_ precedence than the ones provided by the standard package.
 
-## 2. Package managers
+### 2. Package managers
 
 The follow table lists all systems with this package published.  
 Fell free to add your official package manager.
+
 > Systems that are based in others' package managers or repositories are compatible. For example: `pacman/aur` based systems are compatible with `Arch Linux`.
 
-| System | Command |
-| --- | --- |
+| System     | Command                                                                        |
+| ---------- | ------------------------------------------------------------------------------ |
 | Arch Linux | `aurman -S nano-syntax-highlighting-git` or `aurman -Ss nano-syntax-highlight` |
 
-## 3. Clone repo (copy the files)
+### 3. Clone repo (copy the files)
 
 The files should be placed inside of the `~/.nano/` directory.
 
@@ -53,29 +54,30 @@ For system wide, run:
 
 `sudo git clone https://github.com/scopatz/nanorc.git $install_path`
 
-# Configuration
+## Configuration
 
-After installation, you need to inform `nano` to used the new highlight files. 
+After installation, you need to inform `nano` to used the new highlight files.
 The configuration file is located at `~/.nanorc`, for users, and at `/etc/nanorc`, for system wide.
+
 > If this file doesn't exist, create a new one.
 
 Again there are three ways:
 
-## 1. Include all
+### 1. Include all
 
 Append the content of the folder in one line, with wildcard:
 
 `echo "include $install_path/*.nanorc" >> ~/.nanorc` or  
 `echo "include $install_path/*.nanorc" >> /etc/nanorc`
 
-## 2. Include/append our `nanorc` file
+### 2. Include/append our `nanorc` file
 
 Simply run:
 
 `cat $install_path/nanorc >> ~/.nanorc` or  
 `cat $install_path/nanorc >> /etc/nanorc`
 
-## 3. One by one
+### 3. One by one
 
 Add your preferable languages one by onento the file. For example:
 
@@ -84,30 +86,40 @@ Add your preferable languages one by onento the file. For example:
 include "~/.nano/c.nanorc"
 ```
 
-# Themes - WIP
+## Themes - WIP
 
 There are three themes you can use:
+
 - original: only nano's approximate default highlight.
 - project: only scopatz's highlight.
 - custom: highlight, GUI and shortcuts.
 
+## Tricks & Tweaks
 
-# Tricks & Tweaks
-
-## MacOS
+### MacOS
 
 `\<` and `\>` are regular character escapes on MacOS.  
 The bug is fixed in Nano, but this might be a problem if you are using an older version  
 If this is the case, replace them respectively with `[[:<:]]` and `[[:>:]]`.
 This is reported in [Issue 52](https://github.com/scopatz/nanorc/issues/52).
 
-## New Features
+### New Features
 
 Sometimes new features are pending in nano's project issues.  
 A view in that issues it can be helpful. See GNU Project link in the end.
 
+## Developing and Testing
 
-# Acknowledgements
+Clone the project with the submodules:
+
+```bash
+git clone --recurse-submodules https://github.com/scopatz/nanorc.git .
+```
+
+The tests are written in [bats](https://github.com/bats-core/bats-core).
+See this [article](https://opensource.com/article/19/2/testing-bash-bats).
+
+## Acknowledgements
 
 - [Nano Editor](https://www.nano-editor.org) for some `nanorc` files.
 - [GNU Project](https://savannah.gnu.org/projects/nano/) for hosting the `nano`'s git and issues.
