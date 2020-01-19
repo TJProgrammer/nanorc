@@ -225,48 +225,50 @@ f_install(){
   fi
 }
 
-# big change: update all nanorc's
-# big change: install "only" the themed nanorc files and .nanorc
-
-# next:
-
 # ============================
-#
 # MAIN / Init of script
-#
 # =============================
 
-# Pre-check
-f_set_ifs
-f_check_deps && exit 1
+f_main(){
+  # Pre-check
+  f_set_ifs
+  f_check_deps && exit 1
 
-# Menu
-# Getopts: https://www.shellscript.sh/tips/getopts/
-while getopts "d:hlt:uvw" c; do
-  case $c in
-    d) f_set_variable G_DIR "$OPTARG" ;;
-    h) f_menu_usage ;;
-    l) f_set_variable G_LITE true ;;
-    t) f_set_variable G_THEME "$OPTARG" ;;
-    u) f_set_variable G_UNSTABLE true ;;
-    v) f_menu_version ;;
-    w) f_set_variable G_VERBOSE true ;;
-    *) f_menu_usage ;;
-  esac
-done
+  # Menu
+  # Getopts: https://www.shellscript.sh/tips/getopts/
+  while getopts "d:hlt:uvw" c; do
+    case $c in
+      d) f_set_variable G_DIR "$OPTARG" ;;
+      h) f_menu_usage ;;
+      l) f_set_variable G_LITE true ;;
+      t) f_set_variable G_THEME "$OPTARG" ;;
+      u) f_set_variable G_UNSTABLE true ;;
+      v) f_menu_version ;;
+      w) f_set_variable G_VERBOSE true ;;
+      *) f_menu_usage ;;
+    esac
+  done
 
-# Set defaults if there is not.
-[ -z "$G_DIR" ] && G_DIR="${HOME}/.nano/nanorc/"
-[ -z "$G_THEME" ] && G_THEME="scopatz"
+  # Set defaults if there is not.
+  [ -z "$G_DIR" ] && G_DIR="${HOME}/.nano/nanorc/"
+  [ -z "$G_THEME" ] && G_THEME="scopatz"
 
-# Set verbose
-if [ "$G_VERBOSE" = true ]; then
-  set -x
+  # Set verbose
+  if [ "$G_VERBOSE" = true ]; then
+    set -x
+  fi
+
+  # Install
+  f_install
+
+  # Post-check
+  f_set_ifs
+  exit 0
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  f_main
+  if [ $? -gt 0 ]; then
+    exit 1
+  fi
 fi
-
-# Install
-f_install
-
-# Post-check
-f_set_ifs
-exit 0
