@@ -46,7 +46,7 @@ unset G_LITE G_UNSTABLE G_VERBOSE G_DIR G_THEME
 
 # Show the usage/help
 f_menu_usage(){
-  printf "\n Usage: %s [ -h|-l|-u|-v|-w ] [ -d DIR ] [ -t THEME ]" "$0"
+  printf "\n Usage: %s [ -h | -l | -u | -v | -w ] [ -d DIR ] [ -t THEME ]" "$0"
   printf "\n"
   printf "\n IMPROVED NANO SYNTAX HIGHLIGHTING FILES"
   printf "\n Get nano editor better to use and see."

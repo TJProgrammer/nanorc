@@ -10,7 +10,7 @@
 #  - justify a big text at 50th character,
 #  - a guidestripe at 80th character,
 #  - the linenumbers,
-#  - the multibuffer to opens several files at same time,  
+#  - the multibuffer to opens several files at same time,
 #  - the positionlog to continue where stay,
 #  - the suspend (like minimising),
 #  - no tabs, only spaces,
