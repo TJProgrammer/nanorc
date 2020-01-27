@@ -25,11 +25,11 @@ OPTERR=1
 # Separator (useful for simulate arrays)
 G_IFS=" "
 # Debugging variables
-set -e
-set -x
+set -o errexit
+# set -o xtrace
 
 # Global Variables
-G_VERSION="2019.10.17"
+G_VERSION="2020.1.25"
 G_DEPS="unzip sed"
 G_FILE="${HOME}/.nanorc"
 G_REPO_MASTER="https://github.com/scopatz/nanorc/archive/master.zip"
